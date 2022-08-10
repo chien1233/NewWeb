@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [isShowLogin, setIsShowLogin] = useState(false);
+  const [isShowRegister, setIsShowRegister] = useState(false);
+
+  const handleRegister = () => {
+    setIsShowRegister(true);
+    setIsShowLogin(false);
+  };
+  const handleLogin = () => {
+    setIsShowRegister(false);
+    setIsShowLogin(true);
+  };
   return (
     <div>
       <div data-module="google-one-tap" />
@@ -43,6 +55,34 @@ const Header = () => {
               className="weather"
             />
             <div data-module="authen-header" />{" "}
+            <button
+              type="button"
+              onClick={() => setIsShowLogin(true)}
+              className="header-account flex-jcc"
+            >
+              Đăng nhập
+              <svg
+                aria-hidden="true"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
             <Link className="search-link" to="/tim-kiem">
               {" "}
               <svg
@@ -1259,6 +1299,266 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      {isShowLogin && (
+        <div className="auth-wrap active" onClick={() => setIsShowLogin(false)}>
+          <div className="auth-overlay" />
+          <div className="auth-container ">
+            <button type="button" className="auth-close">
+              <svg
+                aria-hidden="true"
+                width={30}
+                height={30}
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M26 6L6 26"
+                  stroke="#4D4D4D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M6 6L26 26"
+                  stroke="#4D4D4D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <div className="logo flex-jcc">
+              <a href="/">
+                <img
+                  loading="lazy"
+                  src="https://cdnweb.dantri.com.vn/dist/c7b827391b2f30b6fbaf.png"
+                  alt="Báo điện tử Dân trí - Tin tức cập nhật liên tục 24/7"
+                />
+              </a>
+            </div>
+            <div className="auth-nav">
+              <button className="active" type="button">
+                Đăng nhập
+              </button>
+              <button className type="button" onClick={handleRegister}>
+                Đăng ký
+              </button>
+            </div>
+            <div className="auth-panel">
+              <div className="auth-tab">
+                <div className="auth-desc">với các tài khoản mạng xã hội</div>
+                <div className="auth-social">
+                  <button className="google" type="button">
+                    Google
+                  </button>
+                  <button className="facebook" type="button">
+                    Facebook
+                  </button>
+                </div>
+                <div className="auth-desc line">
+                  <span>hoặc</span>
+                </div>
+                <form className="auth-form">
+                  <div className="auth-control">
+                    <label className="auth-label">Email</label>
+                    <div className="auth-row">
+                      <input
+                        className="auth-input "
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        defaultValue
+                      />
+                    </div>
+                  </div>
+                  <div className="auth-control">
+                    <label className="auth-label">Mật khẩu</label>
+                    <div className="auth-row password">
+                      <input
+                        className="auth-input "
+                        type="password"
+                        name="password"
+                        placeholder="Mật khẩu"
+                        defaultValue
+                      />
+                      <button type="button" className="auth-view">
+                        <svg
+                          aria-hidden="true"
+                          width={24}
+                          height={24}
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 15.9977C6 15.9977 9.63636 8.72501 16 8.72501C22.3636 8.72501 26 15.9977 26 15.9977C26 15.9977 22.3636 23.2705 16 23.2705C9.63636 23.2705 6 15.9977 6 15.9977Z"
+                            stroke="#808080"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M16 18.725C17.5062 18.725 18.7273 17.504 18.7273 15.9977C18.7273 14.4915 17.5062 13.2704 16 13.2704C14.4937 13.2704 13.2727 14.4915 13.2727 15.9977C13.2727 17.504 14.4937 18.725 16 18.725Z"
+                            stroke="#808080"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="auth-control action">
+                    <button type="button" className="auth-forgot">
+                      Quên mật khẩu?
+                    </button>
+                  </div>
+                  <div className="auth-control">
+                    <button type="submit" className="auth-submit">
+                      Đăng nhập
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isShowRegister && (
+        <div
+          className="auth-wrap active"
+          onClick={() => setIsShowRegister(false)}
+        >
+          <div className="auth-overlay" />
+          <div className="auth-container ">
+            <button type="button" className="auth-close">
+              <svg
+                aria-hidden="true"
+                width={30}
+                height={30}
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M26 6L6 26"
+                  stroke="#4D4D4D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M6 6L26 26"
+                  stroke="#4D4D4D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <div className="logo flex-jcc">
+              <a href="/">
+                <img
+                  loading="lazy"
+                  src="https://cdnweb.dantri.com.vn/dist/c7b827391b2f30b6fbaf.png"
+                  alt="Báo điện tử Dân trí - Tin tức cập nhật liên tục 24/7"
+                />
+              </a>
+            </div>
+            <div className="auth-nav">
+              <button className type="button" onClick={handleLogin}>
+                Đăng nhập
+              </button>
+              <button className="active" type="button">
+                Đăng ký
+              </button>
+            </div>
+            <div className="auth-panel">
+              <div className="auth-tab">
+                <div className="auth-desc mt-24">
+                  Hoàn thành đăng ký, và bắt đầu trải nghiệm ngay!
+                </div>
+                <form className="auth-form">
+                  <div className="auth-control">
+                    <label className="auth-label">Họ và tên</label>
+                    <div className="auth-row">
+                      <input
+                        className="auth-input "
+                        type="text"
+                        name="name"
+                        placeholder="Họ và tên"
+                        defaultValue
+                      />
+                    </div>
+                  </div>
+                  <div className="auth-control">
+                    <label className="auth-label">Email</label>
+                    <div className="auth-row">
+                      <input
+                        className="auth-input "
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        defaultValue
+                      />
+                    </div>
+                  </div>
+                  <div className="auth-control">
+                    <label className="auth-label">Mật khẩu</label>
+                    <div className="auth-row password">
+                      <input
+                        className="auth-input "
+                        type="password"
+                        name="password"
+                        placeholder="Mật khẩu"
+                        defaultValue
+                      />
+                      <button type="button" className="auth-view">
+                        <svg
+                          aria-hidden="true"
+                          width={24}
+                          height={24}
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 15.9977C6 15.9977 9.63636 8.72501 16 8.72501C22.3636 8.72501 26 15.9977 26 15.9977C26 15.9977 22.3636 23.2705 16 23.2705C9.63636 23.2705 6 15.9977 6 15.9977Z"
+                            stroke="#808080"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M16 18.725C17.5062 18.725 18.7273 17.504 18.7273 15.9977C18.7273 14.4915 17.5062 13.2704 16 13.2704C14.4937 13.2704 13.2727 14.4915 13.2727 15.9977C13.2727 17.504 14.4937 18.725 16 18.725Z"
+                            stroke="#808080"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="auth-control term">
+                    Bằng cách đăng ký tài khoản, bạn cũng đồng thời chấp nhận
+                    mọi{" "}
+                    <a href="#">
+                      điều kiện về qui định và chính sách của Dân trí
+                    </a>
+                  </div>
+                  <div className="auth-control">
+                    <button type="submit" className="auth-submit">
+                      Đăng ký
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
